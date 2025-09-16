@@ -1,0 +1,96 @@
+### ---------- LOCAL ----------
+
+### Root
+GET http://localhost:8080/
+
+### Health
+GET http://localhost:8080/healthz
+
+### Swagger UI
+GET http://localhost:8080/api-docs
+
+### Raw OpenAPI JSON
+GET http://localhost:8080/swagger.json
+
+### Get all contacts
+GET http://localhost:8080/contacts
+
+### Get one contact (replace with a real _id)
+GET http://localhost:8080/contacts/000000000000000000000000
+
+### Create a contact
+POST http://localhost:8080/contacts
+Content-Type: application/json
+
+{
+  "firstName": "Deborah",
+  "lastName": "Kline",
+  "email": "deborah@example.com",
+  "favoriteColor": "Blue",
+  "birthday": "2000-02-20"
+}
+
+### Update (replace with real _id)
+PUT http://localhost:8080/contacts/000000000000000000000000
+Content-Type: application/json
+
+{
+  "firstName": "Deborah",
+  "lastName": "Kline",
+  "email": "dkline@example.com",
+  "favoriteColor": "Navy",
+  "birthday": "2000-02-20"
+}
+
+### Delete (replace with real _id)
+DELETE http://localhost:8080/contacts/000000000000000000000000
+
+
+### ---------- RENDER (replace base if yours is different) ----------
+
+@base=https://project1-vxjd.onrender.com
+
+### Root (Render)
+GET {{base}}/
+
+### Health (Render)
+GET {{base}}/healthz
+
+### Swagger UI (Render)
+GET {{base}}/api-docs
+
+### Raw OpenAPI JSON (Render)
+GET {{base}}/swagger.json
+
+### All contacts (Render)
+GET {{base}}/contacts
+
+### Create (Render)
+POST {{base}}/contacts
+Content-Type: application/json
+
+{
+  "firstName": "Alice",
+  "lastName": "Nguyen",
+  "email": "alice@example.com",
+  "favoriteColor": "Coral",
+  "birthday": "1999-04-15"
+}
+
+### Get by id (Render) — replace id
+GET {{base}}/contacts/000000000000000000000000
+
+### Update (Render) — replace id
+PUT {{base}}/contacts/000000000000000000000000
+Content-Type: application/json
+
+{
+  "firstName": "Alice",
+  "lastName": "Nguyen",
+  "email": "alice.nguyen@example.com",
+  "favoriteColor": "Peach",
+  "birthday": "1999-04-15"
+}
+
+### Delete (Render) — replace id
+DELETE {{base}}/contacts/000000000000000000000000
