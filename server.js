@@ -9,7 +9,8 @@ import { serveSwagger, setupSwagger, swaggerSpec } from './swagger.js';
 const app = express();
 const PORT = process.env.PORT || 8080;
 
-// Boot log + env check
+app.set('trust proxy', 1); // behind Render/Proxies
+
 console.log('🔧 Boot vars:', {
   hasUri: !!process.env.MONGODB_URI,
   uriPrefix: (process.env.MONGODB_URI || '').slice(0, 40) + (process.env.MONGODB_URI ? '...' : ''),
@@ -23,24 +24,22 @@ for (const key of ['MONGODB_URI', 'DB_NAME']) {
   }
 }
 
-// middleware
 app.use(cors());
 app.use(express.json());
 app.use(morgan('dev'));
 
-// health + root
 app.get('/healthz', (_req, res) => res.status(200).json({ status: 'ok' }));
 app.get('/', (_req, res) => res.send('Hello World'));
 
-// API + Swagger
 app.use('/contacts', contactsRouter);
+
 app.use('/api-docs', serveSwagger, setupSwagger);
 app.get('/swagger.json', (_req, res) => {
   res.setHeader('Content-Type', 'application/json');
   res.send(swaggerSpec);
 });
 
-// error handler
+app.use((req, res) => res.status(404).json({ message: 'Not Found' })); // 404
 app.use((err, _req, res, _next) => {
   console.error(err);
   res.status(err.statusCode || 500).json({ message: err.expose ? err.message : 'Internal Server Error' });

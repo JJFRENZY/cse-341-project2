@@ -9,7 +9,11 @@ const options = {
       version: '1.0.0',
       description: 'API for storing and retrieving contacts'
     },
-    servers: [{ url: '/' }]
+    servers: [
+      { url: '/', description: 'Render (relative base)' },
+      { url: 'http://localhost:8080', description: 'Local dev' }
+    ],
+    tags: [{ name: 'Contacts', description: 'CRUD for contacts' }]
   },
   apis: ['./routes/*.js']
 };

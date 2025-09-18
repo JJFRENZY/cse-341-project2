@@ -46,9 +46,9 @@ Content-Type: application/json
 DELETE http://localhost:8080/contacts/000000000000000000000000
 
 
-### ---------- RENDER (replace base if yours is different) ----------
+### ---------- RENDER (LIVE) ----------
 
-@base=https://project1-vxjd.onrender.com
+@base=https://cse-341-project2-1anf.onrender.com
 
 ### Root (Render)
 GET {{base}}/
